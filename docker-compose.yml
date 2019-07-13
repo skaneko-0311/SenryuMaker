@@ -6,3 +6,19 @@ services:
     volumes:
       - ./app:/app
     tty: true
+
+  database:
+    container_name: 'database'
+    image: mysql:latest
+    restart: always
+    build: ./docker/mysql
+    environment:
+      MYSQL_DATABASE: database
+      MYSQL_USER: sai
+      MYSQL_PASSWORD: sai
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3314:3306"
+    volumes:
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
