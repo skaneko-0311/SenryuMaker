@@ -7,7 +7,7 @@ services:
     volumes:
       - ./app:/app
     tty: true
-  db:
+  database:
     image: mysql:5.7
     container_name: 'mysql'
     restart: always
@@ -29,10 +29,10 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     depends_on:
-      - db
+      - database
     environment:
     - PMA_ARBITRARY=1
-    - PMA_HOSTS=db
+    - PMA_HOSTS=database
     - PMA_USER=root
     - PMA_PASSWORD=root
     ports:
