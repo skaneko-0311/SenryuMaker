@@ -3,6 +3,7 @@ services:
   app:
     container_name: 'python3'
     build: ./docker/python
+    restart: always
     volumes:
       - ./app:/app
     tty: true
@@ -23,7 +24,6 @@ services:
     - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
     ports:
     - 3306:3306
-    
   phpmyadmin:
     container_name: 'phpmyadmin'
     image: phpmyadmin/phpmyadmin
